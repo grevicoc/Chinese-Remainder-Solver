@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import InputContainer from './components/input-container.component';
+import ProcessContainer from './components/process-container.component';
+import ResultContainer from './components/result-container.component';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+        arrayOfEquation : []
+    }
+  }
+
+  handleUpdate = (num,remainders,moduluss)=>{
+    let tempArray=[];
+    for (var i=0;i<num;i++){
+      tempArray.push([remainders[i],moduluss[i]]);
+    }
+    this.setState({arrayOfEquation:tempArray});
+  }
+
+  render(){
+    return (
+      <div className="main-container">
+        <InputContainer handleUpdate={this.handleUpdate}/>
+        <ProcessContainer array={this.state.arrayOfEquation}/>
+        <ResultContainer cn="result-container"/>
+      </div>
+    )
+  }
+}
+
+  // ========================================
+  
+  ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+  );
