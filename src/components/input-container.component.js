@@ -48,7 +48,7 @@ export default class InputContainer extends Component{
         tempArray[index-1] = o.target.value;
         
         this.setState({remainders:tempArray});
-        // console.log(this.state.remainders);
+        console.log(this.state.remainders);
     }
 
     handleChangeModulus = (o)=>{
@@ -58,7 +58,7 @@ export default class InputContainer extends Component{
         tempArray[index-1] = o.target.value;
         
         this.setState({moduluss:tempArray});
-        // console.log(this.state.moduluss);
+        console.log(this.state.moduluss);
     }
 
     render(){

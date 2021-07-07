@@ -11,16 +11,20 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-        arrayOfEquation : []
+        arrayOfEquation : null
     }
   }
 
   handleUpdate = (num,remainders,moduluss)=>{
-    let tempArray=[];
+    const tempArray = [];
     for (var i=0;i<num;i++){
-      tempArray.push([remainders[i],moduluss[i]]);
+      const num1 = remainders[i];
+      const num2 = moduluss[i];
+      tempArray.push([parseInt(num1),parseInt(num2)]);
     }
-    this.setState({arrayOfEquation:tempArray});
+
+    console.log(tempArray);
+    this.setState({arrayOfEquation : tempArray});
   }
 
   render(){
