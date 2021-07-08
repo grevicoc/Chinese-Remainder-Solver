@@ -7,11 +7,14 @@ import InputContainer from './components/input-container.component';
 import ProcessContainer from './components/process-container.component';
 import ResultContainer from './components/result-container.component';
 
+import countResult from './functions/math-operations';
+
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-        arrayOfEquation : null
+        arrayOfEquation : null,
+        finalResult : 0
     }
   }
 
@@ -22,17 +25,27 @@ class App extends Component{
       const num2 = moduluss[i];
       tempArray.push([parseInt(num1),parseInt(num2)]);
     }
-
-    console.log(tempArray);
     this.setState({arrayOfEquation : tempArray});
   }
 
   render(){
+    let valueResult, processResult;
+    try{
+        let result = countResult(this.state.arrayOfEquation);
+        
+        //olah hasil nilai
+        valueResult = result[0];
+
+        //olah hasil proses
+        processResult = result[1];
+    } catch (err){
+      console.log(err);
+    }
     return (
       <div className="main-container">
         <InputContainer handleUpdate={this.handleUpdate}/>
-        <ProcessContainer array={this.state.arrayOfEquation}/>
-        <ResultContainer cn="result-container"/>
+        <ProcessContainer array={processResult} />
+        <ResultContainer val={valueResult}/>
       </div>
     )
   }

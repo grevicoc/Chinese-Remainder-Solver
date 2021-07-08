@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './input-container.css';
 
 function EquationForm  (props)  {

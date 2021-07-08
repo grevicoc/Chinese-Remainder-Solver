@@ -1,4 +1,5 @@
 .process-container{
     grid-area: B;
     background-color: #c6d7eb;
+    overflow-y: scroll;
 }
