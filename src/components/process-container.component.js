@@ -7,17 +7,19 @@ function Converter(props){
         let equations = [];
         for (var i=0; i<props.eq.length; i++){
             equations.push(
-                <div>
+                <div key={i}>
                     <span>X &equiv; {props.eq[i][0]} (mod {props.eq[i][1]})</span>
                     <br/>
                 </div>
             )
         }
         return (
-            <fieldset className="container-step">
-                <legend>Step: {props.step}</legend>
-                {equations}
-            </fieldset>
+            <div className="card">
+                <div className="card-header">Step {props.step}</div>
+                <div className="card-body">
+                    {equations}
+                </div>
+            </div>
         )
     }
 
@@ -40,10 +42,12 @@ function Converter(props){
             </div>
         )
         return (
-            <fieldset className="container-step">
-                <legend>Step: {props.step}</legend>
-                {props.step===1 ? first : notFirst}
-            </fieldset>
+            <div className="card">
+                <div className="card-header">Step {props.step}</div>
+                <div className="card-body">
+                    {props.step===1 ? first : notFirst}
+                </div>
+            </div>
         )
     }else{
         let idx, shown;
@@ -51,6 +55,8 @@ function Converter(props){
             idx = props.step;
             shown = (
                 <div>
+                    <span>Masukkan step {props.step-1} ke step {0}</span>
+                    <br/>
                     <span>{props.eqs[idx-1][0]} + {props.eqs[idx-1][1]}k{props.step/2} &equiv; {props.eqs[0][idx/2][0]} (mod {props.eqs[0][idx/2][1]}) </span>
                     <br/>
                     <span>k{props.step/2} = {props.eq[0]} + {props.eq[1]}k{props.step-minusOnEven}</span>
@@ -60,10 +66,12 @@ function Converter(props){
             console.log(error);
         }
         return (
-            <fieldset className="container-step">
-                <legend>Step: {props.step}</legend>
-                {shown}
-            </fieldset>
+            <div className="card">
+                <div className="card-header">Step {props.step}</div>
+                <div className="card-body">
+                    {shown}
+                </div>
+            </div>
         )
     }
 }

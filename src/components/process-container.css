@@ -3,3 +3,14 @@
     background-color: #c6d7eb;
     overflow-y: scroll;
 }
+
+.card-header{
+    background-color: #6aa0cf;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+}
+
+.card-body{
+    font-family: 'Martel Sans', sans-serif;
+}
+

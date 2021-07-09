@@ -39,20 +39,18 @@ function processingCount(arrayOfEquation,baseEq,eq2,currentNumEq,numOfEq,arrayOf
     if (currentNumEq===1){
         arrayOfProcess.push(baseEq);    //simpan x = 3+5k1
     }
-    
-    if (numOfEq-1===currentNumEq){
-        let tempEq = convert2EquationTo1(baseEq,eq2);
-        arrayOfProcess.push(tempEq);    //simpan k2=9+11k3
 
-        let resultEq = [baseEq[0] + baseEq[1]*tempEq[0],baseEq[1]*tempEq[1]];
-        arrayOfProcess.push(resultEq);  //simpan x= 348+385k3
-        return resultEq;
-    }else{
-        let tempEq = convert2EquationTo1(baseEq,eq2);
-        arrayOfProcess.push(tempEq);    //simpan k1 = 6+7k2
-        
-        let resultEq = [baseEq[0] + baseEq[1]*tempEq[0],baseEq[1]*tempEq[1]];
-        arrayOfProcess.push(resultEq);  //simpan x = 33+35k2
+    let tempEq = convert2EquationTo1(baseEq,eq2);
+    arrayOfProcess.push(tempEq);    //simpan k2=9+11k3
+
+    let leftCoefficient = baseEq[0] + baseEq[1]*tempEq[0];
+    let rightCoefficient = baseEq[1]*tempEq[1];
+    let resultEq = [leftCoefficient % rightCoefficient, rightCoefficient];
+    arrayOfProcess.push(resultEq);  //simpan x= 348+385k3
+    
+    if (numOfEq-1===currentNumEq){  //basis
+        return resultEq;    
+    }else{                          //rekurens
         return processingCount(arrayOfEquation,resultEq,arrayOfEquation[currentNumEq+1],currentNumEq+1,numOfEq,arrayOfProcess);
     }
 }
@@ -62,6 +60,7 @@ function countResult(arrayOfEquation){
     // console.log(arrayOfEquation);
     let retArrayOfProcess = [];
     retArrayOfProcess.push(arrayOfEquation);    //awal2
+    
     let finalEq = processingCount(arrayOfEquation,arrayOfEquation[0],arrayOfEquation[1],1,arrayOfEquation.length,retArrayOfProcess);
     while (finalEq[0]<0){
         finalEq[0] += finalEq[1];

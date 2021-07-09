@@ -5,7 +5,8 @@ export default class ResultContainer extends Component{
     render(){
         return (
             <div className="result-container">
-                {this.props.val}
+                <span className="result-text">Result: </span>
+                <span className="val-text">{this.props.val}</span>
             </div>
         )
     }

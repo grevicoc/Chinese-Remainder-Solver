@@ -13,8 +13,7 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-        arrayOfEquation : null,
-        finalResult : 0
+        arrayOfEquation : null    //kumpulan eq yang akan diolah menjadi suatu hasil angka yang memenuhi semua eq tersebut dan proses perhitungannya
     }
   }
 
@@ -40,6 +39,7 @@ class App extends Component{
         processResult = result[1];
     } catch (err){
       console.log(err);
+      valueResult = this.state.arrayOfEquation == null ? "" : "ERROR, Equations are not Relatively Prime!";   //kalo masih pertama kali gausah diprint error
     }
     return (
       <div className="main-container">
