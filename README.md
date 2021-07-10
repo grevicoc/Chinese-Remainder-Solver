@@ -10,6 +10,9 @@
 
 ![Error Calculation Display](./github-images/error-calculation.PNG)
 
+## Requirements
+1. node.js, How to Install https://nodejs.org/en/
+
 ## How to Run Local
 1. Open your command line and copy this repository to anywhere you like
 2. Move your current directory on command line to inside of this repository folder
