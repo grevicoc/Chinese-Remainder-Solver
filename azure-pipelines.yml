@@ -51,8 +51,7 @@ stages:
         runOnce:
           deploy:
             steps:
-            - script: |
-                cd 2/
+            - bash: |
                 npm install
-                npm run build --if-present
+                npm run build
               displayName: test askdjahdkjhaskjh
