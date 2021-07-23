@@ -11,8 +11,8 @@ variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'b3e87369-72e7-4639-81f0-b48f885d706b'
 
-  # Web app name
-  webAppName: 'Chinese-Remainder-Solver'
+  # # Web app name
+  # webAppName: 'Chinese-Remainder-Solver'
 
   # Environment name
   environmentName: 'irk-task6'
@@ -56,16 +56,12 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: AzureRmWebAppDeployment@4
-            displayName: 'Azure App Service Deploy: '
+          # Azure VM scale set deployment
+          # Deploy a virtual machine scale set image
+          - task: AzureVmssDeployment@0
             inputs:
               azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              WebAppName: $(webAppName)
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              RuntimeStack: 'NODE|10.10'
-              StartupCommand: 'npm run start'
-              ScriptType: 'Inline Script'
-              InlineScript: |
-                npm install
-                npm run build --if-present
+              action: 'Update image' # Options: update Image, configure Application Startup
+              vmssName: irk-task6
+              vmssOsType: linux
+              imageUrl: 
